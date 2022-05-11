@@ -4,6 +4,7 @@ import lombok.*;
 import org.hibernate.Hibernate;
 
 import javax.persistence.*;
+import java.util.Collection;
 import java.util.Objects;
 
 @Builder
@@ -32,16 +33,10 @@ public class Flight {
     @Column(name = "departure_date")
     private String departureDate;
 
-    @OneToMany(
-            mappedBy = "flight",
-            @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.REFRESH})
-    )
+    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.REFRESH})
     Collection<Baggage> baggage;
 
-    @OneToMany(
-            mappedBy = "flight",
-            @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.REFRESH})
-    )
+    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.REFRESH})
     Collection<Cargo> cargo;
 
     @Override
