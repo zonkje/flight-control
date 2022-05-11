@@ -14,10 +14,10 @@ import java.util.Objects;
 @Setter
 @Entity
 @Table(name = "flight")
+@ToString
 public class Flight {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "flight_id", nullable = false)
     private Long flightId;
 
@@ -33,10 +33,16 @@ public class Flight {
     @Column(name = "departure_date")
     private String departureDate;
 
-    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.REFRESH})
+    @OneToMany(
+            cascade = {CascadeType.PERSIST, CascadeType.REFRESH}
+    )
+    @JoinColumn(name = "flight_id")
     Collection<Baggage> baggage;
 
-    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.REFRESH})
+    @OneToMany(
+            cascade = {CascadeType.PERSIST, CascadeType.REFRESH}
+    )
+    @JoinColumn(name = "flight_id")
     Collection<Cargo> cargo;
 
     @Override

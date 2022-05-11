@@ -12,11 +12,11 @@ import java.util.Objects;
 @Getter
 @Setter
 @Entity
-@Table(name = "flight")
+@Table(name = "baggage")
 public class Baggage {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long id;
 

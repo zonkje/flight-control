@@ -16,7 +16,7 @@ import java.util.Objects;
 public class Cargo {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long id;
 
@@ -28,6 +28,7 @@ public class Cargo {
 
     @Column(name = "pieces")
     private Integer pieces;
+
 
     @Override
     public boolean equals(Object o) {
