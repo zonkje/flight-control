@@ -5,11 +5,11 @@ import lombok.Data;
 
 @Data
 @Builder
-public class FlightWeightResponse {
+public class FlightWeightDataResponse {
 
-    private Integer cargoWeight;
-    private Integer baggageWeight;
-    private Integer totalWeight;
+    private Double cargoWeight;
+    private Double baggageWeight;
+    private Double totalWeight;
     private String weightUnit;
 
 }
