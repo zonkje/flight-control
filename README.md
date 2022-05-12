@@ -9,6 +9,7 @@ This project uses:
 + Swagger2
 
 ## Installation
+### 1.In IDE
 Import project into your favourite IDE.
 Clone this repository:
 ```bash
@@ -18,6 +19,18 @@ git clone https://github.com/zonkje/flight-control.git
 Quick info on how to run a Spring Boot application
 1. Build using maven: ```mvn install```
 2. Execute: ```java -jar target/flight-control-api-0.0.1-SNAPSHOT.jar```
+
+### 2. Using Docker
+
+Build docker application image
+```
+docker build --tag=flight-controller-api:latest .
+```
+
+Run application
+```
+docker run -p8080:8080 flight-controller-api:latest
+```
 
 Access the deployed web application at: http://localhost:8080/api/v1
 
