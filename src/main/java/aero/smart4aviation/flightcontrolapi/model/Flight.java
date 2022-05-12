@@ -1,9 +1,11 @@
 package aero.smart4aviation.flightcontrolapi.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
 import org.hibernate.Hibernate;
 
 import javax.persistence.*;
+import java.time.OffsetDateTime;
 import java.util.Collection;
 import java.util.Objects;
 
@@ -14,7 +16,6 @@ import java.util.Objects;
 @Setter
 @Entity
 @Table(name = "flight")
-@ToString
 public class Flight {
 
     @Id
@@ -31,7 +32,7 @@ public class Flight {
     private String arrivalAirportIATACode;
 
     @Column(name = "departure_date")
-    private String departureDate;
+    private OffsetDateTime departureDate;
 
     @OneToMany(
             cascade = {CascadeType.PERSIST, CascadeType.REFRESH}

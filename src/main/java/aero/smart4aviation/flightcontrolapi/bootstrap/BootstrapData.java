@@ -4,6 +4,7 @@ import aero.smart4aviation.flightcontrolapi.model.Flight;
 import aero.smart4aviation.flightcontrolapi.service.FlightService;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.json.JsonMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
@@ -21,7 +22,10 @@ public class BootstrapData {
     @Bean
     CommandLineRunner runner(FlightService flightService) {
         return args -> {
-            ObjectMapper mapper = new ObjectMapper();
+            ObjectMapper mapper = JsonMapper.builder()
+                    .findAndAddModules()
+                    .build();
+
             TypeReference<Collection<Flight>> typeReference = new TypeReference<Collection<Flight>>() {
             };
             Stream.of("/json/flights_data.json", "/json/flights_cargo.json")
@@ -32,7 +36,7 @@ public class BootstrapData {
                             flightService.saveJSONData(flights);
                             log.info("Data from: " + jsonData + " has been saved");
                         } catch (IOException e) {
-                            System.out.println("Unable to save from the: " + jsonData + ". " + e.getMessage());
+                            log.info("Unable to save from the: " + jsonData + ". " + e.getMessage());
                         }
                     });
         };
