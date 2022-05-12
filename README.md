@@ -6,6 +6,7 @@ This project uses:
 + Spring Data JPA
 + H2 Database (in-memory)
 + Lombok
++ Swagger2
 
 ## Installation
 Import project into your favourite IDE.
@@ -24,11 +25,11 @@ Database is automatically populated with example flights data.
 
 ## Usage
 
-The application has two functionalities
+The application has two functionalities:
 
-1. Freight weight for a given flight
+1. Freight weight data for a given flight
 
-   GET ```http://localhost:8080/api/v1/flight/weight/{flightId}/{flightDate}```
+   GET ```http://localhost:8080/api/v1/flight/weight/{flightNumber}/{flightDate}```
 
    Example: http://localhost:8080/api/v1/flight/weight/5110/2015-09-07T10:10:42
 
@@ -37,3 +38,15 @@ The application has two functionalities
    GET ```http://localhost:8080/api/v1/flight/airport/{airportIATACode}/{flightDate}```
 
    Example: http://localhost:8080/api/v1/flight/airport/SEA/2017-06-08T10:30:10
+
+## Docs
+
+Visit this URL in your browser to get documentation of Flight Control API in JSON format:
+
+ ```http://localhost:8080/api/v1/swagger2/api-docs```
+ 
+You can also navigate to:
+
+```http://localhost:8080/api/v1/swagger-ui/```
+
+to access the Swagger UI

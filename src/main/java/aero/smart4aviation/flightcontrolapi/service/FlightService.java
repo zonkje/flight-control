@@ -29,13 +29,13 @@ public class FlightService {
     private final BaggageRepository baggageRepository;
     private final CargoRepository cargoRepository;
 
-    public FlightWeightDataResponse getFlightWeight(Long flightId, String flightDate) {
-        Flight flight = flightRepository.findByFlightNumber(flightId)
-                .orElseThrow(() -> new ResourceNotFoundException("Flight", flightId));
+    public FlightWeightDataResponse getFlightWeight(Long flightNumber, String flightDate) {
+        Flight flight = flightRepository.findByFlightNumber(flightNumber)
+                .orElseThrow(() -> new ResourceNotFoundException("Flight", flightNumber));
         OffsetDateTime flightDepartureDateTime = flight.getDepartureDate();
 
         if (!checkInputDate(flightDate, flightDepartureDateTime)) {
-            throw new ResourceNotFoundException("Flight", flightId, flightDate);
+            throw new ResourceNotFoundException("Flight", flightNumber, flightDate);
         }
 
         String weightUnit = "kg";
