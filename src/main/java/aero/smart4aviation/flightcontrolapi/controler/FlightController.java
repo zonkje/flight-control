@@ -1,6 +1,7 @@
 package aero.smart4aviation.flightcontrolapi.controler;
 
-import aero.smart4aviation.flightcontrolapi.response.FlightWeightResponse;
+import aero.smart4aviation.flightcontrolapi.response.AirportFlightsDataResponse;
+import aero.smart4aviation.flightcontrolapi.response.FlightWeightDataResponse;
 import aero.smart4aviation.flightcontrolapi.service.FlightService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -18,11 +19,20 @@ public class FlightController {
     private final FlightService flightService;
 
     @GetMapping("/weight/{flightId}/{flightDate}")
-    public ResponseEntity<FlightWeightResponse> getFlightWeight(
+    public ResponseEntity<FlightWeightDataResponse> getFlightWeight(
             @PathVariable("flightId") Long flightId,
             @PathVariable("flightDate") String flightDate
     ) {
-        FlightWeightResponse response = flightService.getFlightWeight(flightId, flightDate);
+        FlightWeightDataResponse response = flightService.getFlightWeight(flightId, flightDate);
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
+    @GetMapping("/airport/{airportIATACode}/{flightDate}")
+    public ResponseEntity<AirportFlightsDataResponse> getAirportFlightsData(
+            @PathVariable("airportIATACode") String airportIATACode,
+            @PathVariable("flightDate") String flightDate
+    ) {
+        AirportFlightsDataResponse response = flightService.getAirportFlightsData(airportIATACode, flightDate);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
